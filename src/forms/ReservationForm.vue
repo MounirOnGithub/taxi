@@ -2,8 +2,8 @@
     <div class="container">
       <div class="row">
         <p v-if="formErrors">
-          The form is not valid, you should correct this errors for submitting :
           <ul v-if="formErrors.length">
+            The form is not valid, you should correct this errors for submitting :
             <li v-for="error in formErrors">
               {{ error }}
             </li>
@@ -26,7 +26,7 @@
 import datePicker from 'vue-bootstrap-datetimepicker'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+// const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const phoneRegex = /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/
 
 export default {
@@ -52,10 +52,9 @@ export default {
   },
   methods: {
     submitReservation: function () {
-      isFormValid = this.validateForm()
+      let isFormValid = this.validateForm()
       if (!isFormValid) {
         console.log('The form is not valid')
-        return
       }
     },
     validateForm: function () {
@@ -81,9 +80,9 @@ export default {
         this.formErrors.push('Destination not found')
         return false
       }
-      // Is the date of reservation is in the past     
-      let now = new Date();
-      now.setHours(0,0,0,0);
+      // Is the date of reservation is in the past
+      let now = new Date()
+      now.setHours(0, 0, 0, 0)
       if (this.date < now) {
         this.formErrors.push('The reservation date should not be in the past')
         return false
