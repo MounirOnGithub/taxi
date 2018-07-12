@@ -22,7 +22,7 @@ export default {
     return {
       date: new Date(),
       config: {
-        format: 'DD/MM/YYYY',
+        format: 'DD/MM/YYYY HH:mm',
         useCurrent: false
       }
     }
