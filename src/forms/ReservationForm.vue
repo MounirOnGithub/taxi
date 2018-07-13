@@ -58,12 +58,15 @@ export default {
       let isFormValid = this.validateForm()
       if (!isFormValid) {
         console.log('The form is not valid')
+        return
       }
+
     },
     validateForm: function () {
       // Is name !empty & under 30 characters
       if (this.name === '' || this.name.length > 30) {
         this.formErrors.push('Name should be under 30 characters and not empty')
+        console.log('jhonny');
         return false
       }
       // Is phone field a phone number
