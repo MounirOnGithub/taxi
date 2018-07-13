@@ -15,6 +15,8 @@
           <input v-model="departure" type="text" placeholder="Departure">
           <input v-model="destination" type="text" placeholder="Destination">
           <date-picker v-model="date" :config="config"></date-picker>
+          Something special to say ?<br>
+          <textarea v-model="comments"></textarea><br>
 
           <button v-on:click="submitReservation" class="btn">Reserve</button>
         </div>
@@ -40,6 +42,7 @@ export default {
       phone: '',
       departure: '',
       destination: '',
+      comments: '',
       reservationDate: null,
       creationDate: null,
       date: new Date(),
@@ -64,11 +67,9 @@ export default {
         return false
       }
       // Is phone field a phone number
-      if (this.phone === '') {
-        if (!phoneRegex.test(this.phone)) {
-          this.formErrors.push('Phone number is not valid')
-          return false
-        }
+      if (this.phone === '' || !phoneRegex.test(this.phone)) {
+        this.formErrors.push('Phone number is not valid')
+        return false
       }
       // Is departure found in Google Maps API
       if (this.departure === '') {
